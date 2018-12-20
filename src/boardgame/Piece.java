@@ -14,12 +14,6 @@ public class Piece {
 		this.position = null;
 	}
 
-	public Piece(Position position, Board board) {
-
-		this.position = position;
-		this.board = board;
-	}
-
 	protected Board getBoard() {
 		return board;
 	}
