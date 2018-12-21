@@ -8,7 +8,7 @@ public class Board {
 	private Piece[][] pieces;
 
 	public Board(int rows, int columns) {
-		if (rows < 1 && columns < 1) {
+		if (rows < 1 || columns < 1) {
 			throw new BoardExpection("Error ao criar o tabuleiro: É necessario que haja 1 linha e 1 coluna");
 		}
 		this.rows = rows;
