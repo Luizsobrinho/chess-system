@@ -1,6 +1,10 @@
 package application;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.Color;
 
 public class UI {
@@ -37,18 +41,29 @@ public class UI {
 		System.out.println("  a b c d e f g h");
 	}
 
+	public static ChessPosition readChessPosition(Scanner sc) {
+
+		try {
+			String pos = sc.nextLine();
+			char column = pos.charAt(0);
+			int row = Integer.parseInt(pos.substring(1));
+			return new ChessPosition(column, row);
+		} catch (RuntimeException e) {
+			throw new InputMismatchException("Error ao ler a posição da Peça");
+		}
+
+	}
+
 	public static void printPiece(ChessPiece piece) {
 		if (piece == null) {
 			System.out.print("-");
+		} else {
+			if (piece.getColor() == Color.WHITE) {
+				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
+			} else {
+				System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+			}
 		}
-		else {
-            if (piece.getColor() == Color.WHITE) {
-                System.out.print(ANSI_WHITE + piece + ANSI_RESET);
-            }
-            else {
-                System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
-            }
-        }
 		System.out.print(" ");
 	}
 }
